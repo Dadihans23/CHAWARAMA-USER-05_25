@@ -175,6 +175,8 @@ class OrderProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+
+
   void stopLoader() {
     _isLoading = false;
     notifyListeners();

@@ -362,8 +362,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             const SizedBox(height: Dimensions.paddingSizeLarge),
                           ],
      
-                          if((configModel.customerLogin?.loginOption?.socialMediaLogin == 1) && (socialStatus?.apple == 1 || socialStatus?.google == 1 || socialStatus?.facebook == 1))
-                            const Center(child: SocialLoginWidget()),
+                          // if((configModel.customerLogin?.loginOption?.socialMediaLogin == 1) && (socialStatus?.apple == 1 || socialStatus?.google == 1 || socialStatus?.facebook == 1))
+                          //   const Center(child: SocialLoginWidget()),
                           const SizedBox(height: Dimensions.paddingSizeLarge),
      
                           InkWell(

@@ -8,6 +8,10 @@ import 'package:flutter_restaurant/localization/language_constrants.dart';
 import 'package:flutter_restaurant/main.dart';
 import 'package:flutter_restaurant/utill/app_constants.dart';
 
+
+import 'dart:convert';
+
+
 class ApiErrorHandler {
   static dynamic getMessage(error) {
     dynamic errorDescription = "";
@@ -32,13 +36,19 @@ class ApiErrorHandler {
                 default:
                   ErrorResponseModel? errorResponse;
                   try {
-                    errorResponse = ErrorResponseModel.fromJson(error.response!.data);
-                  }catch(e) {
+                    if (error.response?.data is String) {
+                      // Si data est une String, il faut d'abord parser en JSON
+                      final decodedJson = jsonDecode(error.response!.data);
+                      errorResponse = ErrorResponseModel.fromJson(decodedJson);
+                    } else if (error.response?.data is Map<String, dynamic>) {
+                      // Si data est déjà un Map
+                      errorResponse = ErrorResponseModel.fromJson(error.response!.data);
+                    }
+                  } catch (e) {
                     if (kDebugMode) {
                       print('error is -> ${e.toString()}');
                     }
                   }
-
                   if (errorResponse != null && errorResponse.errors != null && errorResponse.errors!.isNotEmpty) {
                     if (kDebugMode) {
                       print('error----------------== ${errorResponse.errors![0].message} || error: ${error.response!.requestOptions.uri}');
@@ -47,7 +57,9 @@ class ApiErrorHandler {
                   } else {
                     errorDescription =
                     "Failed to load data ${kDebugMode ? '- status code: ${error.response!.statusCode}' : ''}";
-                  }
+                    print("hello") ;
+                    print(" voila erreur ${error.message} ") ;
+                  } 
               }
               break;
             case DioExceptionType.sendTimeout:
@@ -85,3 +97,7 @@ class ApiErrorHandler {
     return errorDescription;
   }
 }
+
+
+
+
