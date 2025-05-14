@@ -26,7 +26,7 @@
     </queries>
 
     <application
-        android:label="Chawarmagrill"
+        android:label="CHAWARMAGRILL"
         android:name="${applicationName}"
         android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true"
@@ -98,8 +98,8 @@
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:host="YOUR_DOMAIN_HERE" android:scheme="http"/>
-                <data android:host="YOUR_DOMAIN_HERE" android:scheme="https"/>
+                <data android:host="chawarmagrill.com" android:scheme="http"/>
+                <data android:host="chawarmagrill.com" android:scheme="https"/>
 
             </intent-filter>
 
